@@ -1,0 +1,14 @@
+
+.posts {
+
+}
+
+.item {
+    color: #383838;
+}
+
+.item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
