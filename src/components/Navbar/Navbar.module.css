@@ -1,10 +1,22 @@
 .nav {
     grid-area: n;
     background-color: olivedrab;
+    text-align: center;
+    padding: 30px 30px;
+}
+
+.item a {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.item a.activeLink {
+    color: darkgray;
+    font-size: 18px;
 }
 
 .item {
-    color: white;
-    font-size: 18px;
-    text-align: center;
+
 }
+
