@@ -1,15 +1,18 @@
 import React from 'react';
 import s from "./Profile.module.css";
 import MyPosts from "./MyPosts/MyPosts";
+import ava from "../../img/avatar/ava.jpg"
+import profileImg from "../../img/profile_img/profile_img.jpg"
+
 
 
 const Profile = () => {
     return (
         <div className={s.content}>
-            <img src="https://uniglobecarefreetravel.com/content/1594149432_original.jpeg-20210730135458.jpg"/>
+            <img className={s.profileImg} src={profileImg}/>
             <div>
                 AVA + description
-                <img src={"https://cache3.youla.io/files/images/780_780/5b/57/5b5782172138bb21b54e76b2.jpg"}/>
+                <img className={s.ava} src={ava}/>
             </div>
             <MyPosts/>
         </div>

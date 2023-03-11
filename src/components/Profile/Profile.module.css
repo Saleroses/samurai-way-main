@@ -3,10 +3,16 @@
     background-color: dodgerblue;
 }
 
-.posts {
-
+.profileImg {
+    height: 300px;
+    width: 100%;
 }
 
 .item {
     color: #383838;
+}
+
+.ava {
+    height: 200px;
+    border-radius: 5%;
 }
