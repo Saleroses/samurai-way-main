@@ -1,0 +1,30 @@
+.profileWrap {
+    position: relative;
+}
+
+.profileImg {
+    height: 300px;
+    width: 100%;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.item {
+    color: #383838;
+}
+
+.ava {
+    border: 3px solid #fff;
+    border-radius: 100%;
+    max-width: 155px;
+    min-width: 155px;
+    position: absolute;
+    margin-top: 115px;
+    margin-left: 25px;
+
+
+}
+
+.descriptionBlock {
+    padding-top: 50px;
+    padding-left: 12px;
+}
