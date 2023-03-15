@@ -3,6 +3,7 @@
 .profileImg {
     height: 300px;
     width: 100%;
+    border-radius: 5px;
 }
 
 .item {
@@ -11,5 +12,5 @@
 
 .ava {
     height: 200px;
-    border-radius: 5%;
+    border-radius: 5px;
 }
