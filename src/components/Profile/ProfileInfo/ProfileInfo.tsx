@@ -9,7 +9,10 @@ const ProfileInfo = () => {
             <img className={s.ava} src={ava}/>
             <img className={s.profileImg} src={profileImg}/>
             <div className={s.descriptionBlock}>
-                description
+                <div className={s.name}>Марк Цукерберг</div>
+                <div className={s.status}>В жизни не так много моментов, когда приходится напоминать себе дышать! Vaughn
+                    Gittin Gr. Чемпион серии Formula Drift.
+                </div>
             </div>
         </div>
     );

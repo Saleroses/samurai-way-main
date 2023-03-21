@@ -1,10 +1,15 @@
 .profileWrap {
     position: relative;
+    height: 300px;
+    border-radius: 0px 0px 5px 5px;
+    margin-bottom: 5px;
+    padding-bottom: 50px;
 }
 
 .profileImg {
-    height: 300px;
+    height: 250px;
     width: 100%;
+    object-fit: cover;
     border-radius: 5px 5px 0px 0px;
 }
 
@@ -13,18 +18,37 @@
 }
 
 .ava {
+    z-index: 6;
     border: 3px solid #fff;
     border-radius: 100%;
     max-width: 155px;
     min-width: 155px;
     position: absolute;
-    margin-top: 115px;
-    margin-left: 25px;
-
-
+    margin-top: 165px;
+    margin-left: 20px;
 }
 
 .descriptionBlock {
-    padding-top: 50px;
+    position: relative;
+    z-index: 2;
+    height: 100px;
+    margin-top: -5px;
     padding-left: 12px;
+    background-color: #ffffff;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.name {
+    font-size: 22px;
+    font-family: Arial;
+    font-weight: bold;
+    padding-left: 200px;
+    padding-top: 15px;
+}
+
+.status {
+    padding: 5px 200px 50px;
+    width: 450px;
+    font-size: 14px;
+
 }

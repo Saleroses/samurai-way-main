@@ -1,11 +1,12 @@
 import React from 'react';
 import s from "./Dialogs.module.css"
 import {NavLink} from "react-router-dom";
+import {message} from "antd";
 
 
 type DialogItemType = {
     name: string,
-    id: string,
+    id: number,
 }
 const DialogItem = (props: DialogItemType) => {
     return (
@@ -16,9 +17,9 @@ const DialogItem = (props: DialogItemType) => {
 }
 
 
-
 type MessageType = {
     message: string,
+    id?: number
 }
 const Message = (props: MessageType) => {
     return (
@@ -26,10 +27,34 @@ const Message = (props: MessageType) => {
     )
 }
 
+let dialogsData = [
+    {id: 1, name: "Dimych"},
+    {id: 2, name: "Andrey"},
+    {id: 3, name: "Sveta"},
+    {id: 4, name: "Sasha"},
+    {id: 5, name: "Viktor"},
+    {id: 6, name: "Valera"},
+]
 
+let messagesData = [
+    {id: 1, message: "Yooo"},
+    {id: 2, message: "Hi bro!"},
+    {id: 3, message: "Hey"},
+    {id: 4, message: "Wazzzzzzzuuup"},
+    {id: 5, message: "Salam"},
+    {id: 6, message: "Dobreishego"},
+]
+
+let dialogsElement = dialogsData.map((dialog) =>
+    <DialogItem name={dialog.name} id={dialog.id}/>)
+
+let messagesElements = messagesData.map((message) =>
+    <Message message={message.message}/>)
 
 type propsDialogsType = {
-
+    name: string
+    id: number
+    likesCount: number
 }
 
 const Dialogs = (props: propsDialogsType) => {
@@ -37,21 +62,11 @@ const Dialogs = (props: propsDialogsType) => {
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
                 <div>
-                    <DialogItem name="Dimych" id= "1"/>
-                    <DialogItem name="Andrey" id= "2"/>
-                    <DialogItem name="Sveta" id= "3"/>
-                    <DialogItem name="Sasha" id= "4"/>
-                    <DialogItem name="Viktor" id= "5"/>
-                    <DialogItem name="Valera" id= "6"/>
+                    {dialogsElement}
                 </div>
             </div>
             <div className={s.messages}>
-                <Message message={"Yooo"}/>
-                <Message message={"Hi bro!"}/>
-                <Message message={"Hey"}/>
-                <Message message={"Wazzzzzzzuuup"}/>
-                <Message message={"Salam"}/>
-                <Message message={"Dobreishego"}/>
+                {messagesElements}
             </div>
         </div>
 
