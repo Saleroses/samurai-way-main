@@ -3,9 +3,16 @@ import s from "./Post.module.css";
 import ava from "../../../../img//avatar/ava.jpeg";
 
 
+type postType = {
+    message: string
+    likeCounter: number
+}
 
+type postsDataType = {
+    postsData: Array<postsDataType>
+}
 
-const Post = (props: any) => {
+export const Post = (props: postType) => {
     return (
         <div className={s.item}>
             <img src={ava}/>
@@ -18,4 +25,3 @@ const Post = (props: any) => {
     );
 };
 
-export default Post;
