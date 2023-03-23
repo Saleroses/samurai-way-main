@@ -8,10 +8,6 @@ type postType = {
     likeCounter: number
 }
 
-type postsDataType = {
-    postsData: Array<postsDataType>
-}
-
 export const Post = (props: postType) => {
     return (
         <div className={s.item}>

@@ -1,12 +1,13 @@
 import React from 'react';
 import s from "./MyPosts.module.css";
 import {Post} from "./Post/Post";
-import {postsDataType} from "../../../index";
+import {PostsDataType} from "../../../Redux/State";
+
 
 
 
 type myPostProps = {
-    postsData: Array<postsDataType>
+    postsData: Array<PostsDataType>
 }
 
 const MyPosts = (props: myPostProps) => {
