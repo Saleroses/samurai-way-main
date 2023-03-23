@@ -6,7 +6,7 @@ import {DialogsPageType} from "../../Redux/State";
 
 
 type DialogsPropsType = {
-    state:DialogsPageType
+    state: DialogsPageType
 }
 
 
@@ -21,13 +21,15 @@ export const Dialogs = (props: DialogsPropsType) => {
 
     return (
         <div className={s.dialogs}>
-            <div className={s.dialogsItems}>
-                <div>
-                    {dialogsElement}
+            <div className={s.dialogsWrapper}>
+                <div className={s.dialogsItems}>
+                    <div>
+                        {dialogsElement}
+                    </div>
                 </div>
-            </div>
-            <div className={s.messages}>
-                {messagesElements}
+                <div className={s.messages}>
+                    {messagesElements}
+                </div>
             </div>
         </div>
 
