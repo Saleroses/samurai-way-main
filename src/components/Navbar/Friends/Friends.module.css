@@ -1,0 +1,19 @@
+.myFriendsItem {
+    margin-top: 50px;
+}
+
+.friends {
+    margin-top: 10px;
+
+}
+
+.friendAvatar img{
+    width: 40px;
+}
+
+.friendName {
+    color: #34465d;
+    font-size: 18px;
+    text-decoration: none;
+
+}

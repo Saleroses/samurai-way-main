@@ -1,4 +1,4 @@
-
+import avaUser from "../img/ava-users/ava-user.jpg";
 
 export type PostsDataType = {
     id: number
@@ -16,6 +16,11 @@ export type MessagesDataType = {
     message: string
 }
 
+export type friendsDataType = {
+    id: number
+    name: string
+}
+
 export type ProfilePageType = {
     postsData: Array<PostsDataType>
 }
@@ -25,9 +30,14 @@ export type DialogsPageType = {
     messagesData: Array<MessagesDataType>
 }
 
+export type sideBarType = {
+    friendsData: Array<friendsDataType>
+}
+
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
+    sideBar: sideBarType
 }
 
 export let state: RootStateType = {
@@ -53,11 +63,21 @@ export let state: RootStateType = {
             {id: 1, message: "Yooo"},
             {id: 2, message: "Hi bro!"},
             {id: 3, message: "Hey"},
-            {id: 4, message: "Wazzzzzzzzzz  lorem10  lorem10  lorem10  lorem10  lorem10  lorem10  lorem10  lorem10  lorem10  lorem10  lorem10  lorem10 lorem10 zzzzzzzzuuup"},
+            {id: 4, message: "Wazzzzzzzzzz  lorem10 zzzzzzzzuuup"},
             {id: 5, message: "Salam"},
             {id: 6, message: "Dobreishego"},
         ]
-    }
+    },
 
+        sideBar: {
+            friendsData: [
+                {id: 1, name: "Dimych"},
+                {id: 2, name: "Andrey"},
+                {id: 3, name: "Sveta"},
+                {id: 4, name: "Sasha"},
+                {id: 5, name: "Viktor"},
+                {id: 6, name: "Valera"},
+            ]
+        }
 
 }
