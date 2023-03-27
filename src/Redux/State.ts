@@ -53,7 +53,7 @@ export let state: RootStateType = {
             {id: 1, message: "Yooo"},
             {id: 2, message: "Hi bro!"},
             {id: 3, message: "Hey"},
-            {id: 4, message: "Wazzzzzzzzzzzzzzzzzzuuup"},
+            {id: 4, message: "Wazzzzzzzzzz  lorem10  lorem10  lorem10  lorem10  lorem10  lorem10  lorem10  lorem10  lorem10  lorem10  lorem10  lorem10 lorem10 zzzzzzzzuuup"},
             {id: 5, message: "Salam"},
             {id: 6, message: "Dobreishego"},
         ]

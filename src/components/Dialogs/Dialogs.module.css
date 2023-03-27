@@ -1,68 +1,57 @@
 .dialogs {
-    display: grid;
-    grid-template-columns: 2fr 10fr;
-    padding: 10px;
-    border-radius: 5px;
+    background-color: #edf2f6;
 }
 
 .dialogsWrapper {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    width: 100%;
-    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-column-gap: 5px;
 
 }
 
 .dialogsItems {
-    background-color: #1e90ff;
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 0 auto;
-    flex: 0 0 auto;
-    width: auto;
-    width: 300px;
-    padding: 10px;
-    color: #34465d;
-    font-size: 14px;
-    font-weight: bold;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-column-gap: 10px;
+    padding: 5px;
+    background-color: #ffffff;
+    border-radius: 5px;
 
 }
 
 .messages {
-    background-color: #383838;
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 0 auto;
-    flex: 0 0 auto;
-    width: auto;
-    padding: 10px;
-    max-width: 700px;
+    background-color: #ffffff;
+    padding: 5px;
+    border-radius: 5px;
+}
 
-
+.message {
+    font-size: 16px;
+    color: #34465d;
+    padding-bottom: 10px;
 }
 
 .active {
 
 }
-
-.user {
-    display: flex;
+.dialogNames {
+    margin-top: 5px;
 }
 
 .dialogName {
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
     color: #34465d;
-    font-size: 14px;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    margin-left: 65px;
 }
 
 .avatar {
     width: 50px;
     height: auto;
     border-radius: 100%;
-    display: flex;
-    flex-direction: column;
+}
+
+.user {
 
 }
 
