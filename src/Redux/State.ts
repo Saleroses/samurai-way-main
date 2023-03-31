@@ -1,4 +1,9 @@
 import avaUser from "../img/ava-users/ava-user.jpg";
+import {message} from "antd";
+export type AddPostPropsType = {
+    addPost: (postMessage: string) => void
+    Message: string
+}
 
 export type PostsDataType = {
     id: number
@@ -80,4 +85,10 @@ export let state: RootStateType = {
             ]
         }
 
+}
+
+export let addPost = (postMessage: string) => {
+    let newPost: PostsDataType = {id: 4, message: postMessage, likeCounter: 0};
+
+    state.profilePage.postsData.push(newPost)
 }

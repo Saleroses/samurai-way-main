@@ -1,9 +1,21 @@
 .myFriendsItem {
     margin-top: 50px;
+    margin-bottom: 30px;
+    text-align: center;
+
+
+}
+
+.friendsWrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
 }
 
 .friends {
-    margin-top: 10px;
+    padding: 10px;
+    margin: auto;
+    background-color: darkolivegreen;
 
 }
 

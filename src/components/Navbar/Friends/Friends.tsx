@@ -18,14 +18,16 @@ export const Friends = (props: friendsPropsType) => {
 
     return (
         <div>
-            <div className={s.myFriendsItem}>Мои друзья</div>
+            <div className={s.myFriendsItem}>Лучшие друзья</div>
 
-            <div className={s.friends}>
-                <div className={s.friendAvatar}>
-                    {friendsAva}
-                </div>
-                <div className={s.friendName}>
-                    {friendsName}
+            <div className={s.friendsWrap}>
+                <div className={s.friends}>
+                    <div className={s.friendAvatar}>
+                        {friendsAva}
+                    </div>
+                    <div className={s.friendName}>
+                        {friendsName}
+                    </div>
                 </div>
             </div>
         </div>
