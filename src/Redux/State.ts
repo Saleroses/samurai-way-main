@@ -1,5 +1,8 @@
 import avaUser from "../img/ava-users/ava-user.jpg";
-import {message} from "antd";
+import {rerenderEntireTree} from "../render";
+
+
+
 export type AddPostPropsType = {
     addPost: (postMessage: string) => void
     Message: string
@@ -88,7 +91,8 @@ export let state: RootStateType = {
 }
 
 export let addPost = (postMessage: string) => {
-    let newPost: PostsDataType = {id: 4, message: postMessage, likeCounter: 0};
+    let newPost: PostsDataType = {id: new Date().getTime(), message: postMessage, likeCounter: 0};
 
-    state.profilePage.postsData.push(newPost)
+    state.profilePage.postsData.unshift(newPost);
+    rerenderEntireTree(state);
 }
