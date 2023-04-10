@@ -1,7 +1,7 @@
-import avaUser from "../img/ava-users/ava-user.jpg";
-import {rerenderEntireTree} from "../render";
 
-
+let rerenderEntireTree: (state: RootStateType) => void = () => {
+    console.log("Change")
+}
 
 export type AddPostPropsType = {
     addPost: (postMessage: string) => void
@@ -93,14 +93,17 @@ export let state: RootStateType = {
 
 }
 
-export let addPost = (postMessage: string) => {
+export const addPost = (postMessage: string) => {
     let newPost: PostsDataType = {id: new Date().getTime(), message: postMessage, likeCounter: 0};
-
     state.profilePage.postsData.unshift(newPost);
     rerenderEntireTree(state);
 }
 
-export let updateNewPostText = (newPostText: string) => {
+export const updateNewPostText = (newPostText: string) => {
     state.profilePage.newPostText = newPostText
     rerenderEntireTree(state);
+}
+
+export const subscribe = (observer: (state: RootStateType) => void) => {
+    rerenderEntireTree = observer
 }
