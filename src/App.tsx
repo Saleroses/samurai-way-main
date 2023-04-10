@@ -5,11 +5,12 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route} from "react-router-dom";
 import {Dialogs} from "./components/Dialogs/Dialogs";
-import {AddPostPropsType, RootStateType} from "./Redux/State";
+import {AddPostPropsType, RootStateType, updateNewPostText} from "./Redux/State";
 
 type appStateType = {
     state: RootStateType
     addPost: (postMessage: string) => void
+    updateNewPostText: (newPostText: string) => void
 }
 
 
@@ -23,7 +24,8 @@ const App = (props: appStateType) => {
                     <div className={"app-wrapper-content"}>
                         <Route path={'/dialogs'} render={() => <Dialogs state={props.state.dialogsPage}/>}/>
                         <Route path={'/profile'} render={() => <Profile
-                            state={props.state.profilePage.postsData}
+                            updateNewPostText={updateNewPostText}
+                            profilePage={props.state.profilePage}
                             addPost={props.addPost}/>}/>
                         {/*<Route path={'/news'} component={News}/>*/}
                         {/*<Route path={'/music'} component={Music}/>*/}

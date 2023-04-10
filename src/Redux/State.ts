@@ -31,6 +31,7 @@ export type friendsDataType = {
 
 export type ProfilePageType = {
     postsData: Array<PostsDataType>
+    newPostText: string
 }
 
 export type DialogsPageType = {
@@ -51,6 +52,7 @@ export type RootStateType = {
 export let state: RootStateType = {
 
     profilePage: {
+        newPostText: "",
         postsData: [
             {id: 1, message: "How are you?", likeCounter: 12},
             {id: 2, message: "First post", likeCounter: 32},
@@ -95,5 +97,10 @@ export let addPost = (postMessage: string) => {
     let newPost: PostsDataType = {id: new Date().getTime(), message: postMessage, likeCounter: 0};
 
     state.profilePage.postsData.unshift(newPost);
+    rerenderEntireTree(state);
+}
+
+export let updateNewPostText = (newPostText: string) => {
+    state.profilePage.newPostText = newPostText
     rerenderEntireTree(state);
 }
