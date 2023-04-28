@@ -51,11 +51,27 @@ export type RootStateType = {
 
 export type StoreType = {
     _state: RootStateType
-    updateNewPostText: (newPostText: string) => void
-    addPost: (postMessage: string) => void
-    _callSubscriber: (callback: () => void ) => void
+    //updateNewPostText: (newPostText: string) => void
+    //addPost: (postMessage: string) => void
+    _callSubscriber: (callback: () => void) => void
     subscribe: (observer: () => void) => void
     getState: () => RootStateType
+    dispatch: (action: ActionTypes) => void
+}
+
+export type ActionTypes =
+    addPostActionType |
+    ChangeNewTextActionType
+
+
+type addPostActionType = {
+    type: "ADD-POST"
+    postMessage: string
+}
+
+type ChangeNewTextActionType = {
+    type: "UPDATE-NEW-POST-TEXT"
+    newPostText: string
 }
 
 
@@ -103,29 +119,46 @@ let store: StoreType = {
         },
     },
 
-    getState () {
+    getState() {
         return this._state;
     },
-
-    _callSubscriber: () => {
-    console.log("Change")
-},
-    addPost (postMessage: string) {
-        let newPost: PostsDataType = {id: new Date().getTime(), message: postMessage, likeCounter: 0};
-        this._state.profilePage.postsData.unshift(newPost);
-        this._callSubscriber(this.getState);
-    },
-
-    updateNewPostText (newPostText: string) {
-        this._state.profilePage.newPostText = newPostText
-        this._callSubscriber(this.getState);
-    },
-
-    subscribe (observer) {
+    subscribe(observer) {
         this._callSubscriber = observer
+    },
+    _callSubscriber: () => {
+        console.log("Change")
+    },
+
+    // addPost (postMessage: string) {
+    //     let newPost: PostsDataType = {id: new Date().getTime(), message: postMessage, likeCounter: 0};
+    //     this._state.profilePage.postsData.unshift(newPost);
+    //     this._callSubscriber(this.getState);
+    // },
+
+    // updateNewPostText (newPostText: string) {
+    //     this._state.profilePage.newPostText = newPostText
+    //     this._callSubscriber(this.getState);
+    // },
+
+    dispatch: function(action) {
+        if (action.type === "ADD-POST") {
+            let newPost: PostsDataType = {
+                id: new Date().getTime(),
+                message: action.postMessage,
+                likeCounter: 0
+            }
+            this._state.profilePage.postsData.unshift(newPost);
+            this._callSubscriber(this.getState);
+
+        }
+        else if (action.type === "UPDATE-NEW-POST-TEXT") {
+            this._state.profilePage.newPostText = action.newPostText
+            this._callSubscriber(this.getState);
+        }
     },
 
 }
+
 
 export default store;
 
