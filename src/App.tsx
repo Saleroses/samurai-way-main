@@ -5,28 +5,31 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route} from "react-router-dom";
 import {Dialogs} from "./components/Dialogs/Dialogs";
-import {AddPostPropsType, RootStateType, updateNewPostText} from "./Redux/State";
+import {StoreType} from "./Redux/State";
 
-type appStateType = {
-    state: RootStateType
+export type appStateType = {
+    store: StoreType
     addPost: (postMessage: string) => void
     updateNewPostText: (newPostText: string) => void
 }
 
 
-const App = (props: appStateType) => {
+const App: React.FC<appStateType> = (props) => {
+
+    const state = props.store.getState()
+
     return (
         <BrowserRouter>
             <div className="app">
                 <div className={"app-wrapper"}>
                     <Header/>
-                    <Navbar state={props.state.sideBar.friendsData}/>
+                    <Navbar state={state.sideBar.friendsData}/>
                     <div className={"app-wrapper-content"}>
-                        <Route path={'/dialogs'} render={() => <Dialogs state={props.state.dialogsPage}/>}/>
+                        <Route path={'/dialogs'} render={() => <Dialogs state={state.dialogsPage}/>}/>
                         <Route path={'/profile'} render={() => <Profile
-                            updateNewPostText={updateNewPostText}
-                            profilePage={props.state.profilePage}
-                            addPost={props.addPost}/>}/>
+                            updateNewPostText={props.store.updateNewPostText.bind(props.store)}
+                            profilePage={state.profilePage}
+                            addPost={props.store.addPost.bind(props.store)}/>}/>
                         {/*<Route path={'/news'} component={News}/>*/}
                         {/*<Route path={'/music'} component={Music}/>*/}
                         {/*<Route path={'/settings'} component={Settings}/>*/}
