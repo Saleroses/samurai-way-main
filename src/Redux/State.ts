@@ -6,6 +6,9 @@
 
 
 import {v1} from "uuid";
+import ProfileReducer from "./Profile-reducer";
+import DialogsReducer from "./Dialogs-reducer";
+import SideBarReducer from "./SideBar-reducer";
 
 export type AddPostPropsType = {
     addPost: (postMessage: string) => void
@@ -93,13 +96,6 @@ export type SendMassageBodyActionType = {
 
 
 
-export const ADD_POST = "ADD-POST"
-export const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
-export const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY"
-export const SEND_MESSAGE_BODY = "SEND-MESSAGE-BODY"
-
-
-
 
 let store: StoreType = {
 
@@ -156,72 +152,41 @@ let store: StoreType = {
         console.log("Change")
     },
 
-    // addPost (postMessage: string) {
-    //     let newPost: PostsDataType = {id: new Date().getTime(), message: postMessage, likeCounter: 0};
-    //     this._state.profilePage.postsData.unshift(newPost);
-    //     this._callSubscriber(this.getState);
-    // },
-
-    // updateNewPostText (newPostText: string) {
-    //     this._state.profilePage.newPostText = newPostText
-    //     this._callSubscriber(this.getState);
-    // },
 
     dispatch: function(action) {
-        if (action.type === ADD_POST) {
-            let newPost: PostsDataType = {
-                id: v1(),
-                message: action.postMessage,
-                likeCounter: 0
-            }
-            this._state.profilePage.postsData.unshift(newPost);
-            this._state.profilePage.newPostText = ''
-            this._callSubscriber(this.getState);
+        this._state.profilePage = ProfileReducer(this._state.profilePage, action)
+        this._state.dialogsPage= DialogsReducer(this._state.dialogsPage, action)
+        this._state.sideBar = SideBarReducer(this._state.sideBar, action)
+        this._callSubscriber(this.getState);
 
-        }
-        else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newPostText
-            this._callSubscriber(this.getState);
-        }
-        else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-            this._state.dialogsPage.newMassageBody = action.body
-            this._callSubscriber(this.getState);
-        }
-        else if (action.type === SEND_MESSAGE_BODY) {
-            let body = this._state.dialogsPage.newMassageBody
-            this._state.dialogsPage.newMassageBody = ''
-            this._state.dialogsPage.messagesData.push({id: v1(), message: body},)
-            this._callSubscriber(this.getState);
-        }
-    },
-
-}
-
-export const addPostCreator = (text: string):addPostActionType => {
-    return {
-        type: ADD_POST,
-        postMessage: text
     }
-}
+    //     if (action.type === ADD_POST) {
+    //         let newPost: PostsDataType = {
+    //             id: v1(),
+    //             message: action.postMessage,
+    //             likeCounter: 0
+    //         }
+    //         this._state.profilePage.postsData.unshift(newPost);
+    //         this._state.profilePage.newPostText = ''
+    //         this._callSubscriber(this.getState);
+    //
+    //     }
+    //     else if (action.type === UPDATE_NEW_POST_TEXT) {
+    //         this._state.profilePage.newPostText = action.newPostText
+    //         this._callSubscriber(this.getState);
+    //     }
+    //     else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+    //         this._state.dialogsPage.newMassageBody = action.body
+    //         this._callSubscriber(this.getState);
+    //     }
+    //     else if (action.type === SEND_MESSAGE_BODY) {
+    //         let body = this._state.dialogsPage.newMassageBody
+    //         this._state.dialogsPage.newMassageBody = ''
+    //         this._state.dialogsPage.messagesData.push({id: v1(), message: body},)
+    //         this._callSubscriber(this.getState);
+    //     }
+    // },
 
-export const updateNewPostTextCreator = (text: string):ChangeNewTextActionType => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newPostText: text
-    }
-}
-
-export const sendMassageCreator = ():SendMassageBodyActionType => {
-    return {
-        type: SEND_MESSAGE_BODY,
-    }
-}
-
-export const updateNewMassageBodyCreator = (text: string):UpdateNewMassageBodyActionType => {
-    return {
-        type: UPDATE_NEW_MESSAGE_BODY,
-        body: text
-    }
 }
 
 

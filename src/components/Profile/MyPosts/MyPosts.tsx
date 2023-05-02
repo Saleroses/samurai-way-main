@@ -3,10 +3,9 @@ import s from "./MyPosts.module.css";
 import {Post} from "./Post/Post";
 import {
     ActionTypes,
-    addPostCreator,
     ProfilePageType,
-    updateNewPostTextCreator,
 } from "../../../Redux/State";
+import {addPostCreator, updateNewPostTextCreator} from "../../../Redux/Profile-reducer";
 
 
 
