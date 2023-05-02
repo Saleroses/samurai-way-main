@@ -26,12 +26,10 @@ const App: React.FC<appStateType> = (props) => {
                     <Header/>
                     <Navbar state={state.sideBar.friendsData}/>
                     <div className={"app-wrapper-content"}>
-                        <Route path={'/dialogs'} render={() => <Dialogs state={state.dialogsPage}/>}/>
+                        <Route path={'/dialogs'} render={() => <Dialogs dispatch={props.dispatch} state={state.dialogsPage}/>}/>
                         <Route path={'/profile'} render={() => <Profile
-                           // updateNewPostText={props.store.updateNewPostText.bind(props.store)}
                             profilePage={state.profilePage}
                             dispatch={props.dispatch}
-                            // addPost={props.store.addPost.bind(props.store)}
                             />}/>
                         {/*<Route path={'/news'} component={News}/>*/}
                         {/*<Route path={'/music'} component={Music}/>*/}

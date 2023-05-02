@@ -1,12 +1,15 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem/DialogsItem";
 import {Message} from "./Message/Message";
-import {DialogsPageType} from "../../Redux/State";
+import {ActionTypes, DialogsPageType, sendMassageCreator, updateNewMassageBodyCreator} from "../../Redux/State";
+import {text} from "stream/consumers";
 
 
 type DialogsPropsType = {
     state: DialogsPageType
+    dispatch: (action: ActionTypes) => void
+
 }
 
 
@@ -18,6 +21,16 @@ export const Dialogs = (props: DialogsPropsType) => {
     let messagesElements = props.state.messagesData.map((message) =>
         <Message message={message.message}/>)
 
+    let newMassageBody = props.state.newMassageBody
+
+    let onSendMassageClick = () => {
+        props.dispatch(sendMassageCreator())
+    }
+
+    let onNewMassageChange = (e: ChangeEvent <HTMLTextAreaElement>) => {
+        let body = e.target.value
+        props.dispatch(updateNewMassageBodyCreator(body))
+    }
 
     return (
         <div className={s.dialogs}>
@@ -28,9 +41,15 @@ export const Dialogs = (props: DialogsPropsType) => {
                     </div>
                 </div>
                 <div className={s.messages}>
-                    {messagesElements}
-                    <textarea></textarea>
-                    <button>Send</button>
+                    <div>{messagesElements}</div>
+                        <div>
+                            <div><textarea
+                                value={newMassageBody}
+                                placeholder={"Enter yor massage"}
+                                onChange={onNewMassageChange}
+                            ></textarea></div>
+                            <div><button onClick={onSendMassageClick}>Send</button></div>
+                        </div>
                 </div>
             </div>
         </div>

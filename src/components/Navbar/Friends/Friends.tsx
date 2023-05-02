@@ -18,7 +18,7 @@ export const Friends = (props: friendsPropsType) => {
     // let friendsName = props.state.map((name) =>
     //     <FriendsName name={name.name} id={name.id} key={name.id}/>)
 
-    const friendsName = props.state.filter( name => { return <div key={name.id}>{name.id === 3}</div>})
+    const friendsName = props.state.filter( name => { return <div key={name.id}>{name.id === "3"}</div>})
     console.log(friendsName)
     return (
         <div>
