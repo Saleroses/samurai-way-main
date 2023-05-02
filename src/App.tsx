@@ -9,8 +9,6 @@ import {ActionTypes, StoreType} from "./Redux/State";
 
 export type appStateType = {
     store: StoreType
-    //addPost: (postMessage: string) => void
-    //updateNewPostText: (newPostText: string) => void
     dispatch: (action: ActionTypes) => void
 }
 
