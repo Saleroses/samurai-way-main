@@ -1,4 +1,4 @@
-import state, {
+import {
     ActionTypes,
     DialogsPageType,
     SendMassageBodyActionType,
