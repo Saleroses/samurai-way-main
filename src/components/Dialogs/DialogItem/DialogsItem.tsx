@@ -1,7 +1,7 @@
 import React from 'react';
 import s from "./../Dialogs.module.css"
 import {NavLink} from "react-router-dom";
-import {DialogsDataType} from "../../../Redux/State";
+import {DialogsDataType} from "../../../Redux/Store";
 import avaUser from "../../../img/ava-users/ava-user.jpg";
 
 

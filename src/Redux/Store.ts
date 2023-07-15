@@ -1,9 +1,3 @@
-//
-// let rerenderEntireTree: (state: RootStateType) => void = () => {
-//     console.log("Change")
-// }
-
-
 
 import {v1} from "uuid";
 import ProfileReducer from "./Profile-reducer";

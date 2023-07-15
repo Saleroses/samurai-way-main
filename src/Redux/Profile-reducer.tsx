@@ -4,16 +4,22 @@ import {
     ChangeNewTextActionType,
     PostsDataType,
     ProfilePageType,
-} from "./State";
+} from "./Store";
 import {v1} from "uuid";
-
-
 
 
 const ADD_POST = "ADD-POST"
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
 
-const ProfileReducer = (state: ProfilePageType, action: ActionTypes) => {
+let initialState: ProfilePageType = {
+    newPostText: "",
+    postsData: [
+    {id: v1(), message: "How are you?", likeCounter: 12},
+    {id: v1(), message: "First post", likeCounter: 32},
+    {id: v1(), message: "First first post)", likeCounter: 16},
+]}
+
+const ProfileReducer = (state = initialState, action: ActionTypes) => {
 
 
 

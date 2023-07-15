@@ -1,24 +1,49 @@
 import {
-    ActionTypes,
-    DialogsPageType,
+    ActionTypes, DialogsDataType,
+    DialogsPageType, MessagesDataType,
     SendMassageBodyActionType,
     UpdateNewMassageBodyActionType
-} from "./State";
+} from "./Store";
 import {v1} from "uuid";
+import {MessageType} from "antd/es/message";
 
 const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY"
 const SEND_MESSAGE_BODY = "SEND-MESSAGE-BODY"
 
-const DialogsReducer = (state: DialogsPageType, action: ActionTypes) => {
+let initialState: DialogsPageType = {
+    dialogsData: [
+        {id: v1(), name: "Dimych"},
+        {id: v1(), name: "Andrey"},
+        {id: v1(), name: "Sveta"},
+        {id: v1(), name: "Sasha"},
+        {id: v1(), name: "Viktor"},
+        {id: v1(), name: "Valera"},
+    ] as Array<DialogsDataType>,
+    messagesData: [
+        {id: v1(), message: "Yooo"},
+        {id: v1(), message: "Hi bro!"},
+        {id: v1(), message: "Hey"},
+        {id: v1(), message: "Wazzzzzzzzzz zzzzzzzzuuup"},
+        {id: v1(), message: "Salam"},
+        {id: v1(), message: "Dobreishego"},
+    ] as Array<MessagesDataType>,
+    newMassageBody: ""
+}
 
-    if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-        state.newMassageBody = action.body
+export type InitialStateType = typeof initialState
 
-    }
-    else if (action.type === SEND_MESSAGE_BODY) {
-        let body = state.newMassageBody
-        state.newMassageBody = ''
-        state.messagesData.push({id: v1(), message: body})
+
+const DialogsReducer = (state = initialState, action: ActionTypes) => {
+
+    switch (action.type) {
+        case UPDATE_NEW_MESSAGE_BODY:
+            state.newMassageBody = action.body
+            break;
+        case SEND_MESSAGE_BODY:
+            let body = state.newMassageBody
+            state.newMassageBody = ''
+            state.messagesData.push({id: v1(), message: body})
+            break;
     }
 
     return state;

@@ -1,5 +1,5 @@
 import React from 'react';
-import {friendsDataType} from "../../../Redux/State";
+import {friendsDataType} from "../../../Redux/Store";
 
 
 export const FriendsName = (props: friendsDataType) => {

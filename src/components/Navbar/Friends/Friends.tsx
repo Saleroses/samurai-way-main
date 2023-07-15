@@ -1,5 +1,5 @@
 import React from 'react';
-import {friendsDataType} from "../../../Redux/State";
+import {friendsDataType} from "../../../Redux/Store";
 import {FriendsAva} from "./FriendsAva";
 import {FriendsName} from "./FriendsName";
 import s from "./Friends.module.css";
