@@ -3,13 +3,13 @@
 // объединяя reducer-ы с помощью combineReducers,
 // мы задаём структуру нашего единственного объекта-состояния
 import {combineReducers, createStore} from "redux";
-import DialogsReducer from "./Dialogs-reducer";
-import ProfileReducer from "./Profile-reducer";
-import SideBarReducer from "./SideBar-reducer";
+import {DialogsReducer} from "./Dialogs-reducer";
+import {ProfileReducer} from "./Profile-reducer";
+import {SideBarReducer} from "./SideBar-reducer";
 
 const rootReducer = combineReducers({
-    profilePage: DialogsReducer,
-    dialogsPage: ProfileReducer,
+    profilePage: ProfileReducer,
+    dialogsPage: DialogsReducer,
     sideBar: SideBarReducer,
 })
 // непосредственно создаём store

@@ -1,22 +1,15 @@
 import React from 'react';
-import {friendsDataType} from "../../../Redux/Store";
 import {FriendsAva} from "./FriendsAva";
 import {FriendsName} from "./FriendsName";
 import s from "./Friends.module.css";
 import avaUser from "../../../img/ava-users/ava-user.jpg";
+import {friendsDataType} from "../../../Redux/SideBar-reducer";
 
 export type friendsPropsType = {
     state: Array<friendsDataType>
 }
 
 export const Friends = (props: friendsPropsType) => {
-
-    // let friendsAva = props.state.map((avatar) =>
-    //     <FriendsAva avatar={avatar.name} key={avatar.id}/>)
-    //
-    //
-    // let friendsName = props.state.map((name) =>
-    //     <FriendsName name={name.name} id={name.id} key={name.id}/>)
 
     const friendsName = props.state.filter( name => { return <div key={name.id}>{name.id === "3"}</div>})
     console.log(friendsName)

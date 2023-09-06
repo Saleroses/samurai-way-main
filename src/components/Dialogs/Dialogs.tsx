@@ -2,18 +2,17 @@ import React, {ChangeEvent} from 'react';
 import s from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem/DialogsItem";
 import {Message} from "./Message/Message";
-import {ActionTypes, DialogsPageType} from "../../Redux/Store";
-import {sendMassageCreator, updateNewMassageBodyCreator} from "../../Redux/Dialogs-reducer";
+import {ActionType, DialogsPageType, SendMassageAC, UpdateNewMassageBodyAC} from "../../Redux/Dialogs-reducer";
+import {useDispatch} from "react-redux";
 
 
 type DialogsPropsType = {
     state: DialogsPageType
-    dispatch: (action: ActionTypes) => void
-
 }
 
 
 export const Dialogs = (props: DialogsPropsType) => {
+    let dispatch = useDispatch()
 
     let dialogsElement = props.state.dialogsData.map((dialog) =>
         <DialogItem name={dialog.name} id={dialog.id}/>)
@@ -24,12 +23,12 @@ export const Dialogs = (props: DialogsPropsType) => {
     let newMassageBody = props.state.newMassageBody
 
     let onSendMassageClick = () => {
-        props.dispatch(sendMassageCreator())
+        dispatch(SendMassageAC())
     }
 
     let onNewMassageChange = (e: ChangeEvent <HTMLTextAreaElement>) => {
         let body = e.target.value
-        props.dispatch(updateNewMassageBodyCreator(body))
+        dispatch(UpdateNewMassageBodyAC(body))
     }
 
     return (

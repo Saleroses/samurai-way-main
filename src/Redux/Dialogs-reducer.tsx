@@ -1,14 +1,22 @@
-import {
-    ActionTypes, DialogsDataType,
-    DialogsPageType, MessagesDataType,
-    SendMassageBodyActionType,
-    UpdateNewMassageBodyActionType
-} from "./Store";
-import {v1} from "uuid";
-import {MessageType} from "antd/es/message";
 
-const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY"
-const SEND_MESSAGE_BODY = "SEND-MESSAGE-BODY"
+import {v1} from "uuid";
+
+export type DialogsDataType = {
+    id: string
+    name: string
+}
+
+export type MessagesDataType = {
+    id: string
+    message: string
+}
+
+export type DialogsPageType = {
+    dialogsData: Array<DialogsDataType>
+    messagesData: Array<MessagesDataType>
+    newMassageBody: string
+}
+
 
 let initialState: DialogsPageType = {
     dialogsData: [
@@ -30,36 +38,32 @@ let initialState: DialogsPageType = {
     newMassageBody: ""
 }
 
-export type InitialStateType = typeof initialState
+export type SendMassageBodyAT = ReturnType <typeof SendMassageAC>
+export type UpdateNewMassageBodyAT = ReturnType <typeof UpdateNewMassageBodyAC>
 
+export type ActionType = SendMassageBodyAT | UpdateNewMassageBodyAT
 
-const DialogsReducer = (state = initialState, action: ActionTypes) => {
+export const DialogsReducer = (state = initialState, action: ActionType) => {
 
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_BODY:
-            state.newMassageBody = action.body
-            break;
-        case SEND_MESSAGE_BODY:
-            let body = state.newMassageBody
-            state.newMassageBody = ''
-            state.messagesData.push({id: v1(), message: body})
-            break;
+        case "UPDATE_NEW_MESSAGE_BODY":
+            return action.text
+
+        case "SEND_MESSAGE_BODY":
+            let newMassage = {
+                id: v1(),
+                message: "",
+            }
+            return [...state.messagesData, newMassage]
     }
 
     return state;
 }
 
-export const sendMassageCreator = ():SendMassageBodyActionType => {
-    return {
-        type: SEND_MESSAGE_BODY,
-    }
+export const UpdateNewMassageBodyAC = (text: string) => {
+    return {type: "UPDATE_NEW_MESSAGE_BODY", text}
 }
 
-export const updateNewMassageBodyCreator = (text: string):UpdateNewMassageBodyActionType => {
-    return {
-        type: UPDATE_NEW_MESSAGE_BODY,
-        body: text
-    }
+export const SendMassageAC = () => {
+    return {type: "SEND_MESSAGE_BODY"} as const
 }
-
-export default DialogsReducer;

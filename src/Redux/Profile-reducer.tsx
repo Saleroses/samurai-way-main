@@ -1,59 +1,59 @@
-import {
-    ActionTypes,
-    addPostActionType,
-    ChangeNewTextActionType,
-    PostsDataType,
-    ProfilePageType,
-} from "./Store";
 import {v1} from "uuid";
 
+export type PostsDataType = {
+    id: string
+    message: string
+    likeCounter: number
+}
 
-const ADD_POST = "ADD-POST"
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
+export type ProfilePageType = {
+    postsData: Array<PostsDataType>
+    newPostText: string
+}
+
+export type AddPostAT = ReturnType<typeof AddPostAC>
+export type UpdateNewPostTextAT = ReturnType<typeof UpdateNewPostTextAC>
+export type ActionType = AddPostAT | UpdateNewPostTextAT
+
 
 let initialState: ProfilePageType = {
     newPostText: "",
     postsData: [
-    {id: v1(), message: "How are you?", likeCounter: 12},
-    {id: v1(), message: "First post", likeCounter: 32},
-    {id: v1(), message: "First first post)", likeCounter: 16},
-]}
+        {id: v1(), message: "How are you?", likeCounter: 12},
+        {id: v1(), message: "First post", likeCounter: 32},
+        {id: v1(), message: "First first post)", likeCounter: 16},
+    ]}
 
-const ProfileReducer = (state = initialState, action: ActionTypes) => {
+export const ProfileReducer = (state = initialState, action: ActionType) => {
 
-
-
-        if (action.type === ADD_POST) {
+    switch (action.type) {
+        case "ADD-POST":
             let newPost: PostsDataType = {
                 id: v1(),
-                message: action.postMessage,
+                message: action.newPostText,
                 likeCounter: 0
             }
-            state.postsData.unshift(newPost);
-            state.newPostText = ''
+            return [...state.postsData, newPost]
 
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            state.newPostText = action.newPostText
-        }
-    return state;
+        case "UPDATE_NEW_POST_TEXT":
+            return state.newPostText = action.text
 
-}
-
-export const addPostCreator = (text: string): addPostActionType => {
-    return {
-        type: ADD_POST,
-        postMessage: text
+        default:
+            return state
     }
 }
 
-export const updateNewPostTextCreator = (text: string):ChangeNewTextActionType => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newPostText: text
-    }
+
+export const AddPostAC = (newPostText: string) => {
+    return {type: "ADD-POST", newPostText} as const
 }
 
-export default ProfileReducer
+export const UpdateNewPostTextAC = (text: string) => {
+    return {type: "UPDATE_NEW_POST_TEXT", text} as const
+}
+
+
+
 
 
 
