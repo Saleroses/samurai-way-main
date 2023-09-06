@@ -3,7 +3,6 @@ import s from "./MyPosts.module.css";
 import {Post} from "./Post/Post";
 import {ActionType, AddPostAC, ProfilePageType, UpdateNewPostTextAC} from "../../../Redux/Profile-reducer";
 import {useDispatch} from "react-redux";
-import {store} from "../../../Redux/Redux-store";
 
 
 
@@ -22,12 +21,13 @@ const MyPosts = (props: myPostProps) => {
     let addPost = () => {
         let text = newPostElementRef.current!.value;
         dispatch(AddPostAC(text))
+        console.log(text)
     }
 
     let onPostChange = () => {
         let text = newPostElementRef.current!.value;
         dispatch(UpdateNewPostTextAC(text))
-
+        console.log(newPostElementRef.current!.value)
     }
 
 
