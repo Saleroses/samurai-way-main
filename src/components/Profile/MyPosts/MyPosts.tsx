@@ -21,13 +21,13 @@ const MyPosts = (props: myPostProps) => {
     let addPost = () => {
         let text = newPostElementRef.current!.value;
         dispatch(AddPostAC(text))
-        console.log(text)
+        console.log("add", text)
     }
 
     let onPostChange = () => {
         let text = newPostElementRef.current!.value;
         dispatch(UpdateNewPostTextAC(text))
-        console.log(newPostElementRef.current!.value)
+        console.log(text)
     }
 
 

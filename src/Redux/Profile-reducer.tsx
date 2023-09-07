@@ -7,8 +7,9 @@ export type PostsDataType = {
 }
 
 export type ProfilePageType = {
-    postsData: Array<PostsDataType>
     newPostText: string
+    postsData: Array<PostsDataType>
+
 }
 
 export type AddPostAT = ReturnType<typeof AddPostAC>
@@ -30,17 +31,20 @@ export const ProfileReducer = (state = initialState, action: ActionType) => {
         case "ADD-POST":
             let newPost: PostsDataType = {
                 id: v1(),
-                message: action.newPostText,
-                likeCounter: 0
+                message: action.text,
+                likeCounter: 0,
             }
-            return {...state.postsData, newPost
+            return {...state,
+                postsData: [newPost, ...state.postsData],
+                newPostText: ''
+            }
 
-            }
 
         case "UPDATE_NEW_POST_TEXT":
-            let stateCopy = {...state}
-            stateCopy.newPostText = action.text
-            return stateCopy
+            return {...state,
+                postsData: [...state.postsData],
+                newPostText: action.text
+            }
 
         default:
             return state
@@ -48,8 +52,8 @@ export const ProfileReducer = (state = initialState, action: ActionType) => {
 }
 
 
-export const AddPostAC = (newPostText: string) => {
-    return {type: "ADD-POST", newPostText} as const
+export const AddPostAC = (text: string) => {
+    return {type: "ADD-POST", text} as const
 }
 
 export const UpdateNewPostTextAC = (text: string) => {
