@@ -29,7 +29,6 @@ export const Dialogs = (props: DialogsPropsType) => {
     let onNewMassageChange = (e: ChangeEvent <HTMLTextAreaElement>) => {
         let body = e.target.value
         dispatch(UpdateNewMassageBodyAC(body))
-        console.log(body)
 
     }
 

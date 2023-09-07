@@ -2,7 +2,7 @@ import React from 'react';
 import s from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {ProfilePageType} from "../../Redux/Profile-reducer";
-import MyPosts from "./MyPosts/MyPosts";
+import {MyPosts} from "./MyPosts/MyPosts";
 import {useDispatch} from "react-redux";
 
 

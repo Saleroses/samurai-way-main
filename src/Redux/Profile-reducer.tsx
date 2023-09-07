@@ -18,7 +18,7 @@ export type ActionType = AddPostAT | UpdateNewPostTextAT
 
 
 let initialState: ProfilePageType = {
-    newPostText: "",
+    newPostText: '',
     postsData: [
         {id: v1(), message: "How are you?", likeCounter: 12},
         {id: v1(), message: "First post", likeCounter: 32},
@@ -31,12 +31,13 @@ export const ProfileReducer = (state = initialState, action: ActionType) => {
         case "ADD-POST":
             let newPost: PostsDataType = {
                 id: v1(),
-                message: action.text,
+                message: state.newPostText,
                 likeCounter: 0,
             }
             return {...state,
+                newPostText: '',
                 postsData: [newPost, ...state.postsData],
-                newPostText: ''
+
             }
 
 
@@ -52,8 +53,8 @@ export const ProfileReducer = (state = initialState, action: ActionType) => {
 }
 
 
-export const AddPostAC = (text: string) => {
-    return {type: "ADD-POST", text} as const
+export const AddPostAC = () => {
+    return {type: "ADD-POST"} as const
 }
 
 export const UpdateNewPostTextAC = (text: string) => {

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {ChangeEvent, memo, useCallback, useState} from 'react';
 import s from "./MyPosts.module.css";
 import {Post} from "./Post/Post";
-import {ActionType, AddPostAC, ProfilePageType, UpdateNewPostTextAC} from "../../../Redux/Profile-reducer";
-import {useDispatch} from "react-redux";
+import {AddPostAC, PostsDataType, ProfilePageType, UpdateNewPostTextAC} from "../../../Redux/Profile-reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../../../Redux/Redux-store";
 
 
 
@@ -12,40 +13,35 @@ type myPostProps = {
 }
 
 
-const MyPosts = (props: myPostProps) => {
+export const MyPosts = (props: myPostProps) => {
+
+    const newPostText = useSelector <AppRootStateType, string>(state => state.profilePage.newPostText)
+    const newPost = useSelector <AppRootStateType, Array<PostsDataType>>(state => state.profilePage.postsData)
     let dispatch = useDispatch()
-    let post = props.posts.postsData.map( (p) =>
+
+    let post = newPost.map( (p) =>
         <Post key={p.id} message={p.message} likeCounter={p.likeCounter}/>)
 
-    let newPostElementRef = React.createRef<HTMLTextAreaElement>()
     let addPost = () => {
-        let text = newPostElementRef.current!.value;
-        dispatch(AddPostAC(text))
-        console.log("add", text)
+        dispatch(AddPostAC())
     }
 
-    let onPostChange = () => {
-        let text = newPostElementRef.current!.value;
-        dispatch(UpdateNewPostTextAC(text))
-        console.log(text)
+    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        dispatch(UpdateNewPostTextAC(e.currentTarget.value))
     }
-
-
 
     return (
         <div className={s.posts}>
             <h3>My posts</h3>
             <div>
                 <div className={s.textarea}>
-                    <textarea onChange={onPostChange} ref={newPostElementRef} value={props.posts.newPostText}/>
+                    <textarea onChange={onPostChange} value={newPostText}/>
                 </div>
                 <div>
                     <button onClick={ addPost }>Add post</button>
                 </div>
             </div>
-                {post}
+            {post}
         </div>
     );
 };
-
-export default MyPosts;
