@@ -2,8 +2,9 @@ import React, {ChangeEvent} from 'react';
 import s from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem/DialogsItem";
 import {Message} from "./Message/Message";
-import {ActionType, DialogsPageType, SendMassageAC, UpdateNewMassageBodyAC} from "../../Redux/Dialogs-reducer";
-import {useDispatch} from "react-redux";
+import {DialogsPageType, SendMassageAC, UpdateNewMassageBodyAC} from "../../Redux/Dialogs-reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../../Redux/Redux-store";
 
 
 type DialogsPropsType = {
@@ -12,15 +13,17 @@ type DialogsPropsType = {
 
 
 export const Dialogs = (props: DialogsPropsType) => {
+
+    const dialogsState = useSelector <AppRootStateType, DialogsPageType>(state => state.dialogsPage)
     let dispatch = useDispatch()
 
-    let dialogsElement = props.state.dialogsData.map((dialog) =>
+    let dialogsElement = dialogsState.dialogsData.map((dialog) =>
         <DialogItem name={dialog.name} id={dialog.id} key={dialog.id}/>)
 
-    let messagesElements = props.state.messagesData.map((message) =>
+    let messagesElements = dialogsState.messagesData.map((message) =>
         <Message message={message.message} key={message.id}/>)
 
-    let newMassageBody = props.state.newMassageBody
+    let newMassageBody = dialogsState.newMassageBody
 
     let onSendMassageClick = () => {
         dispatch(SendMassageAC())

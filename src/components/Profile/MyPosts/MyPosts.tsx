@@ -15,12 +15,11 @@ type myPostProps = {
 
 export const MyPosts = (props: myPostProps) => {
 
-    const newPostText = useSelector <AppRootStateType, string>(state => state.profilePage.newPostText)
-    const newPost = useSelector <AppRootStateType, Array<PostsDataType>>(state => state.profilePage.postsData)
+    const postState = useSelector <AppRootStateType, ProfilePageType>(state => state.profilePage)
     let dispatch = useDispatch()
 
-    let post = newPost.map( (p) =>
-        <Post key={p.id} message={p.message} likeCounter={p.likeCounter}/>)
+    let post = postState.postsData.map( (p) =>
+        <Post key={p.id} message={p.message} likeCounter={p.likeCounter} id={p.id}/>)
 
     let addPost = () => {
         dispatch(AddPostAC())
@@ -35,7 +34,7 @@ export const MyPosts = (props: myPostProps) => {
             <h3>My posts</h3>
             <div>
                 <div className={s.textarea}>
-                    <textarea onChange={onPostChange} value={newPostText}/>
+                    <textarea onChange={onPostChange} value={postState.newPostText}/>
                 </div>
                 <div>
                     <button onClick={ addPost }>Add post</button>

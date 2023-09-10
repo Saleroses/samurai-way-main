@@ -14,7 +14,9 @@ export type ProfilePageType = {
 
 export type AddPostAT = ReturnType<typeof AddPostAC>
 export type UpdateNewPostTextAT = ReturnType<typeof UpdateNewPostTextAC>
-export type ActionType = AddPostAT | UpdateNewPostTextAT
+export type LikePostAT = ReturnType<typeof LikePostAC>
+export type ActionType = AddPostAT | UpdateNewPostTextAT | LikePostAT
+
 
 
 let initialState: ProfilePageType = {
@@ -37,14 +39,18 @@ export const ProfileReducer = (state = initialState, action: ActionType) => {
             return {...state,
                 newPostText: '',
                 postsData: [newPost, ...state.postsData],
-
             }
-
 
         case "UPDATE_NEW_POST_TEXT":
             return {...state,
                 postsData: [...state.postsData],
                 newPostText: action.text
+            }
+
+        case "LIKE-POST":
+            return {...state,
+                postsData: [...state.postsData]
+                    .map( (p)=> p.id === action.postId ? {...p, likeCounter: +1} : p)
             }
 
         default:
@@ -61,6 +67,9 @@ export const UpdateNewPostTextAC = (text: string) => {
     return {type: "UPDATE_NEW_POST_TEXT", text} as const
 }
 
+export const LikePostAC = (postId: string) => {
+    return {type: "LIKE-POST", postId} as const
+}
 
 
 
