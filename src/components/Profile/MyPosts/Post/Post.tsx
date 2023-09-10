@@ -1,9 +1,9 @@
 import React, {MouseEventHandler} from 'react';
 import s from "./Post.module.css";
 import ava from "../../../../img//avatar/ava.jpeg";
-import {useDispatch} from "react-redux";
-import {store} from "../../../../Redux/Redux-store";
-import {LikePostAC} from "../../../../Redux/Profile-reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType, store} from "../../../../Redux/Redux-store";
+import {LikePostAC, PostsDataType} from "../../../../Redux/Profile-reducer";
 
 
 type postType = {
@@ -13,7 +13,6 @@ type postType = {
 }
 
 export const Post = (props: postType) => {
-    let state = store.getState().profilePage.postsData
     let dispatch = useDispatch()
 
     let likePost = () => {

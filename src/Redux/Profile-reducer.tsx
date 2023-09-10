@@ -48,9 +48,10 @@ export const ProfileReducer = (state = initialState, action: ActionType) => {
             }
 
         case "LIKE-POST":
+
             return {...state,
                 postsData: [...state.postsData]
-                    .map( (p)=> p.id === action.postId ? {...p, likeCounter: +1} : p)
+                    .map( (p)=> p.id === action.postId ? {...p, likeCounter: p.likeCounter+1} : p)
             }
 
         default:
