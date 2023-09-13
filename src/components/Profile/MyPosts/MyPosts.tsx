@@ -34,10 +34,10 @@ export const MyPosts = (props: myPostProps) => {
             <h3>My posts</h3>
             <div>
                 <div className={s.textarea}>
-                    <textarea onChange={onPostChange} value={postState.newPostText}/>
+                    <textarea placeholder={"Enter yor massage"} onChange={onPostChange} value={postState.newPostText}/>
                 </div>
                 <div>
-                    <button onClick={ addPost }>Add post</button>
+                    <button disabled={!postState.newPostText} onClick={ addPost }>Add post</button>
                 </div>
             </div>
             {post}

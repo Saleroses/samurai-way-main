@@ -51,7 +51,7 @@ export const Dialogs = (props: DialogsPropsType) => {
                                 placeholder={"Enter yor massage"}
                                 onChange={onNewMassageChange}
                             ></textarea></div>
-                            <div><button onClick={onSendMassageClick}>Send</button></div>
+                            <div><button disabled={!newMassageBody} onClick={onSendMassageClick}>Send</button></div>
                         </div>
                 </div>
             </div>
