@@ -28,6 +28,15 @@
 }
 
 .likeCounter {
+    display: flex;
+    padding-top: 18px;
+}
+
+.likeButton {
 
 }
 
+.counter {
+    padding-right: 5px;
+
+}
