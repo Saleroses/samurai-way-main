@@ -25,6 +25,8 @@
 .message {
     align-items: start;
     padding-left: 5px;
+    width: 95%;
+    border: 1px solid saddlebrown;
 }
 
 .likeCounter {
