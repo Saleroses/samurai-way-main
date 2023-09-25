@@ -1,8 +1,9 @@
 
 
 .item {
-    display: flex;
+    flex-direction: column;
     border: 1px solid;
+    border-radius: 5px;
     padding: 5px;
     margin: 5px 0px;
 }
@@ -13,6 +14,20 @@
     border-radius: 50%;
 }
 
+.messageWrap {
+    display: flex;
+}
+
+.ava {
+
+}
+
 .message {
+    align-items: start;
     padding-left: 5px;
 }
+
+.likeCounter {
+
+}
+

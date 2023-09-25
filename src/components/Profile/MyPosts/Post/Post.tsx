@@ -20,11 +20,16 @@ export const Post = (props: postType) => {
 
     return (
         <div className={s.item} key={props.id}>
-            <img src={ava}/>
-            <div className={s.message}>
-                {props.message}
+
+            <div className={s.messageWrap}>
+                <div className={s.ava}>
+                    <img src={ava}/>
+                </div>
+                <div className={s.message}>
+                    {props.message}
+                </div>
             </div>
-            <div>
+            <div className={s.likeCounter}>
                 {props.likeCounter}
                 <button onClick={likePost}> Like </button>
             </div>
