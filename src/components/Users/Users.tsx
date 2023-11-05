@@ -10,30 +10,36 @@ type UsersType = {
 
 export const Users = (props: UsersType) => {
     const dispatch = useDispatch()
-    const usersState = useSelector <AppRootStateType, UsersPageType>(state => state.usersPage)
-
+    const usersState = useSelector<AppRootStateType, UsersPageType>(state => state.usersPage)
 
 
     return (
-        <div>
-            {usersState.users.map( (u) => <div key={u.id}>
-                <div>
-                    <div>{<img src={u.avaUrl} className={s.ava} alt=""/>}
+        <div className={s.wrapper}>
+            {usersState.users.map((u) => <div key={u.id}>
+                <div className={s.user}>
+                    <div className={s.userPhoto}>
+                        <div>{<img src={u.avaUrl} className={s.ava} alt=""/>}
                         </div>
-
-                    <div>
-                        {u.followed ? <button onClick={()=>{dispatch(UnFollowAC(u.id))}}>Unfollow</button>
-                        : <button onClick={()=>{dispatch(FollowAC(u.id))}}>Follow</button>
-                        }
+                    </div>
+                    <div className={s.info}>
+                        <div className={s.name}>{u.fullName}</div>
+                        <div className={s.status}>{u.status}</div>
+                    </div>
+                    <div className={s.geoInfo}>
+                        <div>{u.location.country + ", "}</div>
+                        <div>{u.location.city}</div>
+                    </div>
+                    <div className={s.btnContainer}>
+                        <div className={s.followBtn}>
+                            {u.followed ? <button onClick={() => {
+                                    dispatch(UnFollowAC(u.id))
+                                }}>Unfollow</button>
+                                : <button onClick={() => {
+                                    dispatch(FollowAC(u.id))
+                                }}>Follow</button>
+                            }
                         </div>
-                </div>
-                <div>
-                    <div>{u.fullName}</div>
-                    <div>{u.status}</div>
-                </div>
-                <div>
-                    <div>{u.location.country}</div>
-                    <div>{u.location.city}</div>
+                    </div>
                 </div>
             </div>)}
         </div>

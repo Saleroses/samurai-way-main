@@ -28,9 +28,9 @@ export type ActionType = FollowAT | UnFollowAT | SetUsersAT
 
 let initialState: UsersPageType = {
     users: [
-        {id: v1(), avaUrl: 'https://cs6.pikabu.ru/avatars/1782/v1782200-838218673.jpg', followed: false, fullName: "name1", status: "I'm a boss", location: {city: 'Minsk', country: 'Belarus'}},
-        {id: v1(), avaUrl: 'https://cs6.pikabu.ru/avatars/1782/v1782200-838218673.jpg', followed: true, fullName: "name2", status: "status", location: {city: 'SPb', country: 'Russia'}},
-        {id: v1(),  avaUrl: 'https://cs6.pikabu.ru/avatars/1782/v1782200-838218673.jpg', followed: true, fullName: "name3", status: "i'm fine", location: {city: 'Moscow', country: 'Russia'}},
+        {id: v1(), avaUrl: 'https://cs6.pikabu.ru/avatars/1782/v1782200-838218673.jpg', followed: false, fullName: "Igor", status: "I'm a boss", location: {city: 'Minsk', country: 'Belarus'}},
+        {id: v1(), avaUrl: 'https://cs6.pikabu.ru/avatars/1782/v1782200-838218673.jpg', followed: true, fullName: "Ira", status: "status", location: {city: 'SPb', country: 'Russia'}},
+        {id: v1(),  avaUrl: 'https://cs6.pikabu.ru/avatars/1782/v1782200-838218673.jpg', followed: true, fullName: "Gordey", status: "i'm fine", location: {city: 'Moscow', country: 'Russia'}},
     ]}
 
 export const usersReducer = (state = initialState, action: ActionType) => {
