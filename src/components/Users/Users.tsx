@@ -30,15 +30,13 @@ export const Users = (props: UsersType) => {
                         <div>{u.location.city}</div>
                     </div>
                     <div className={s.btnContainer}>
-                        <div className={s.followBtn}>
-                            {u.followed ? <button onClick={() => {
-                                    dispatch(UnFollowAC(u.id))
-                                }}>Unfollow</button>
-                                : <button onClick={() => {
-                                    dispatch(FollowAC(u.id))
-                                }}>Follow</button>
-                            }
-                        </div>
+                        {u.followed ? <button className={s.unfollowBtn} onClick={() => {
+                                dispatch(UnFollowAC(u.id))
+                            }}>Unfollow</button>
+                            : <button className={s.followBtn} onClick={() => {
+                                dispatch(FollowAC(u.id))
+                            }}>Follow</button>
+                        }
                     </div>
                 </div>
             </div>)}

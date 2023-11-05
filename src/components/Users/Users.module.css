@@ -1,8 +1,7 @@
 
 .wrapper {
-    border: 1px solid;
-    max-width: 70%;
-    min-width: 350px;
+    max-width: 65%;
+    min-width: 550px;
     color: #34465d;
     margin-top: 10px;
 }
@@ -19,7 +18,7 @@
 
 .user {
     display: flex;
-    justify-content: normal;
+    justify-content: start;
 }
 
 .info {
@@ -32,6 +31,7 @@
 .name {
     font-weight: bold;
     font-size: 17px;
+    min-width: 220px;
 }
 
 .status {
@@ -42,13 +42,55 @@
     font-size: 15px;
     align-self: center;
     margin-bottom: 30px;
+    min-width: 100px;
+
 }
 
 .followBtn {
+    background-color: #34465d;;
+    border-radius:5px;
+    border:1px solid #34465d;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-size:15px;
+    width: 140px;
+    height: 35px;
+    text-decoration:none;
+}
+.followBtn:hover {
+    background-color: #416088;
+}
+.followBtn:active {
+    position:relative;
+    top:1px;
+}
 
+.unfollowBtn {
+    background-color: #fafafa;;
+    border-radius:5px;
+    border:1px solid #34465d;
+    display:inline-block;
+    cursor:pointer;
+    color:#34465d;
+    font-size:15px;
+    padding:8px 40px;
+    text-decoration:none;
+}
+.unfollowBtn:hover {
+    background-color: rgba(38, 54, 102, 0.13);
 
 }
+.unfollowBtn:active {
+    position:relative;
+    top:1px;
+}
+
+
 .btnContainer {
     align-self: center;
+    padding-left: 10px;
     margin-bottom: 30px;
+    margin-right: 10px;
+    margin-left: auto;
 }
