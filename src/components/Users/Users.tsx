@@ -1,7 +1,8 @@
 import React from 'react';
-import {useDispatch} from "react-redux";
-import {store} from "../../Redux/Redux-store";
-import {UsersPageType} from "../../Redux/Users-reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType, store} from "../../Redux/Redux-store";
+import {FollowAC, UnFollowAC, UsersPageType} from "../../Redux/Users-reducer";
+import s from './Users.module.css'
 
 type UsersType = {
     userPage: UsersPageType
@@ -9,19 +10,21 @@ type UsersType = {
 
 export const Users = (props: UsersType) => {
     const dispatch = useDispatch()
-    const state = store.getState().usersPage
+    const usersState = useSelector <AppRootStateType, UsersPageType>(state => state.usersPage)
+
 
 
     return (
         <div>
-            {props.userPage.users.map( (u) => <div key={u.id}>
+            {usersState.users.map( (u) => <div key={u.id}>
                 <div>
-                    <div>{<img src={u.avaUrl} alt=""/>}
+                    <div>{<img src={u.avaUrl} className={s.ava} alt=""/>}
                         </div>
 
-                    <div><button>
-                        {'Follow'}
-                    </button>
+                    <div>
+                        {u.followed ? <button onClick={()=>{dispatch(UnFollowAC(u.id))}}>Unfollow</button>
+                        : <button onClick={()=>{dispatch(FollowAC(u.id))}}>Follow</button>
+                        }
                         </div>
                 </div>
                 <div>
