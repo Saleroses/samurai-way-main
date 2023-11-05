@@ -31,7 +31,9 @@ const App = () => {
                         <Route path={'/profile'} render={() => <Profile
                             profilePage={state.profilePage}
                             />}/>
-                        <Route path={'/users'} render={() => <Users />}/>
+                        <Route path={'/users'} render={() => <Users
+                            userPage={state.usersPage}
+                        />}/>
                         {/*<Route path={'/news'} component={News}/>*/}
                         {/*<Route path={'/music'} component={Music}/>*/}
                         {/*<Route path={'/settings'} component={Settings}/>*/}
