@@ -7,6 +7,8 @@ import {AppRootStateType, store} from "./Redux/Redux-store";
 
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Profile} from "./components/Profile/Profile";
+import {Users} from "./components/Users/Users";
+
 
 export type appStateType = {
     store: AppRootStateType
@@ -29,6 +31,7 @@ const App = () => {
                         <Route path={'/profile'} render={() => <Profile
                             profilePage={state.profilePage}
                             />}/>
+                        <Route path={'/users'} render={() => <Users />}/>
                         {/*<Route path={'/news'} component={News}/>*/}
                         {/*<Route path={'/music'} component={Music}/>*/}
                         {/*<Route path={'/settings'} component={Settings}/>*/}
