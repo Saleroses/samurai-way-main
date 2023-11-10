@@ -24,6 +24,7 @@ export const Users = (props: UsersType) => {
                     <div className={s.info}>
                         <div className={s.name}>{u.fullName}</div>
                         <div className={s.status}>{u.status}</div>
+                        <div className={s.sendButton}>Send message</div>
                     </div>
                     <div className={s.geoInfo}>
                         <div>{u.location.country + ", "}</div>

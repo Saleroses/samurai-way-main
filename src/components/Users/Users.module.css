@@ -22,10 +22,11 @@
 }
 
 .info {
+    padding-top: 7px;
     align-self: center;
     margin-left: 20px;
     min-width: 150px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .name {
@@ -35,15 +36,17 @@
 }
 
 .status {
+    color: #626d7a;
     font-size: 14px;
 }
 
 .geoInfo {
+    padding-top: 7px;
     font-size: 15px;
     align-self: center;
     margin-bottom: 30px;
     min-width: 100px;
-
+    color: #626d7a;
 }
 
 .followBtn {
@@ -79,13 +82,21 @@
     text-decoration:none;
 }
 .unfollowBtn:hover {
-    background-color: rgba(65, 119, 181, 0.16);
+    background-color: rgba(65, 119, 181, 0.1);
     border:1px solid rgba(52, 70, 93, 0.64);
 
 }
 .unfollowBtn:active {
     position:relative;
     top:1px;
+}
+
+.sendButton {
+    padding-top: 7px;
+    font-size: 14px;
+    display:inline-block;
+    cursor:pointer;
+    color:#34465d;
 }
 
 
