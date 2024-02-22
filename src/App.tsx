@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {AppRootStateType, store} from "./Redux/Redux-store";
 
 import {Dialogs} from "./components/Dialogs/Dialogs";
@@ -24,20 +24,25 @@ const App = () => {
                 <div className={"app-wrapper"}>
                     <Header/>
                     <Navbar state={state.sideBar.friendsData}/>
-                    <div className={"app-wrapper-content"}>
-                        <Route path={'/dialogs'} render={() =>
-                            <Dialogs state={state.dialogsPage}
+                    <Switch>
+                        <div className={"app-wrapper-content"}>
+                            <Route exact path={'/'} render={() => <Profile
+                                profilePage={state.profilePage}
                             />}/>
-                        <Route path={'/profile'} render={() => <Profile
-                            profilePage={state.profilePage}
+                            <Route path={'/dialogs'} render={() =>
+                                <Dialogs state={state.dialogsPage}
+                                />}/>
+                            <Route path={'/profile'} render={() => <Profile
+                                profilePage={state.profilePage}
                             />}/>
-                        <Route path={'/users'} render={() => <Users
-                            userPage={state.usersPage}
-                        />}/>
-                        {/*<Route path={'/news'} component={News}/>*/}
-                        {/*<Route path={'/music'} component={Music}/>*/}
-                        {/*<Route path={'/settings'} component={Settings}/>*/}
-                    </div>
+                            <Route path={'/users'} render={() => <Users
+                                userPage={state.usersPage}
+                            />}/>
+                            {/*<Route path={'/news'} component={News}/>*/}
+                            {/*<Route path={'/music'} component={Music}/>*/}
+                            {/*<Route path={'/settings'} component={Settings}/>*/}
+                        </div>
+                    </Switch>
                 </div>
             </div>
         </BrowserRouter>
