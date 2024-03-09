@@ -1,45 +1,60 @@
-import {v1} from "uuid";
-import {AddPostAT, LikePostAT, UpdateNewPostTextAT} from "./Profile-reducer";
+import axios from "axios";
+import {UserApi} from "../api/user-api";
+import {log} from "util";
+import {useState} from "react";
+
 
 export type UserDataType = {
-    id: string
-    avaUrl: string
+    name: string,
+    id: number,
+    photos: {
+        small: string | null,
+        large: string | null
+    },
+    status: string,
     followed: boolean
-    fullName: string
-    status: string
-    location: {
-        city: string,
-        country: string,
-    }
-
 }
 
 export type UsersPageType = {
-    users: Array<UserDataType>
+    items: UserDataType[]
+    totalCount: number,
+    error: string | null
 }
 
 export type FollowAT = ReturnType<typeof FollowAC>
 export type UnFollowAT = ReturnType<typeof UnFollowAC>
 export type SetUsersAT = ReturnType<typeof SetUsersAC>
+export type GetUsersAT = ReturnType<typeof GetUsersAC>
 
-export type ActionType = FollowAT | UnFollowAT | SetUsersAT
+export type ActionType = FollowAT | UnFollowAT | SetUsersAT | GetUsersAT
 
 
-
-let initialState: UsersPageType = {
-    users: [
-        {id: v1(), avaUrl: 'https://cs6.pikabu.ru/avatars/1782/v1782200-838218673.jpg', followed: false, fullName: "Igor Voskresenskiy", status: "I'm a boss", location: {city: 'Minsk', country: 'Belarus'}},
-        {id: v1(), avaUrl: 'https://cs6.pikabu.ru/avatars/1782/v1782200-838218673.jpg', followed: true, fullName: "Ira", status: "status", location: {city: 'SPb', country: 'Russia'}},
-        {id: v1(),  avaUrl: 'https://cs6.pikabu.ru/avatars/1782/v1782200-838218673.jpg', followed: true, fullName: "Gordey", status: "i'm fine", location: {city: 'Moscow', country: 'Russia'}},
-    ]}
+export let initialState: UsersPageType = {
+        items:
+            [
+                {
+                    name: 'Egor',
+                    id: 1,
+                    photos: {
+                        small: null,
+                        large: null,
+                    },
+                    status: 'Status',
+                    followed: true
+                }
+            ],
+    totalCount: 0,
+    error: null
+}
 
 export const usersReducer = (state = initialState, action: ActionType) => {
 
     switch (action.type) {
         case 'FOLLOW':
             return (
-                {...state,
-                    users: state.users.map( (u) => {
+                {
+                    ...state,
+                    users: state.items.map((u) => {
                         if (u.id === action.userId) {
                             return {...u, followed: true}
                         }
@@ -50,8 +65,9 @@ export const usersReducer = (state = initialState, action: ActionType) => {
 
         case 'UNFOLLOW':
             return (
-                {...state,
-                    users: state.users.map( (u) => {
+                {
+                    ...state,
+                    users: state.items.map((u) => {
                         if (u.id === action.userId) {
                             return {...u, followed: false}
                         }
@@ -62,9 +78,15 @@ export const usersReducer = (state = initialState, action: ActionType) => {
 
         case "SET-USERS":
             return (
-                {...state, users: [...state.users, ...action.users]}
+                {...state, users: [...state.items, ...action.users]}
             )
 
+        // case "GET-USERS":
+        //
+        //     return (
+        //         UserApi.getUsers()
+        //             .then((res)=> res.data)
+        //     )
 
         default:
             return state
@@ -72,12 +94,11 @@ export const usersReducer = (state = initialState, action: ActionType) => {
 }
 
 
-
-export const FollowAC = (userId: string) => {
+export const FollowAC = (userId: number) => {
     return {type: 'FOLLOW', userId} as const
 }
 
-export const UnFollowAC = (userId: string) => {
+export const UnFollowAC = (userId: number) => {
     return {type: 'UNFOLLOW', userId} as const
 }
 
@@ -85,3 +106,6 @@ export const SetUsersAC = (users: Array<UserDataType>) => {
     return {type: 'SET-USERS', users} as const
 }
 
+export const GetUsersAC = () => {
+    return {type: 'GET-USERS'} as const
+}

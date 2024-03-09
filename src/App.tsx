@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route} from "react-router-dom";
 import {AppRootStateType, store} from "./Redux/Redux-store";
 
 import {Dialogs} from "./components/Dialogs/Dialogs";
@@ -24,7 +24,6 @@ const App = () => {
                 <div className={"app-wrapper"}>
                     <Header/>
                     <Navbar state={state.sideBar.friendsData}/>
-                    <Switch>
                         <div className={"app-wrapper-content"}>
                             <Route exact path={'/'} render={() => <Profile
                                 profilePage={state.profilePage}
@@ -42,7 +41,6 @@ const App = () => {
                             {/*<Route path={'/music'} component={Music}/>*/}
                             {/*<Route path={'/settings'} component={Settings}/>*/}
                         </div>
-                    </Switch>
                 </div>
             </div>
         </BrowserRouter>
