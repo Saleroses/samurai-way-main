@@ -32,16 +32,16 @@ export type ActionType = FollowAT | UnFollowAT | SetUsersAT | GetUsersAT
 export let initialState: UsersPageType = {
         items:
             [
-                {
-                    name: 'Egor',
-                    id: 1,
-                    photos: {
-                        small: null,
-                        large: null,
-                    },
-                    status: 'Status',
-                    followed: true
-                }
+                // {
+                //     name: 'Egor',
+                //     id: 1,
+                //     photos: {
+                //         small: null,
+                //         large: null,
+                //     },
+                //     status: 'Status',
+                //     followed: true
+                // }
             ],
     totalCount: 0,
     error: null
@@ -81,12 +81,15 @@ export const usersReducer = (state = initialState, action: ActionType) => {
                 {...state, users: [...state.items, ...action.users]}
             )
 
-        // case "GET-USERS":
-        //
-        //     return (
-        //         UserApi.getUsers()
-        //             .then((res)=> res.data)
-        //     )
+        case "GET-USERS":
+          const newData =  UserApi.getUsers()
+                .then((res)=> res.data.items)
+            return (
+                {
+                    ...state,
+                    items: newData
+                }
+            )
 
         default:
             return state

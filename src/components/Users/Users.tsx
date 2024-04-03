@@ -15,6 +15,10 @@ export const Users = (props: UsersType) => {
     const usersState = useSelector<AppRootStateType, UsersPageType>(state => state.usersPage)
     const defaultAva = 'https://tulacity.gosuslugi.ru/netcat_files/285/2177/avatar_600x600_0.png'
 
+   useEffect(() => {
+       UserApi.getUsers().then(data => {
+           usersState.items = data.data.items
+    })})
 
 
     return (
