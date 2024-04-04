@@ -25,17 +25,17 @@ const App = () => {
                     <Header/>
                     <Navbar state={state.sideBar.friendsData}/>
                         <div className={"app-wrapper-content"}>
-                            <Route exact path={'/'} render={() => <Profile
-                                profilePage={state.profilePage}
+                            <Route exact path={'/'} render={() =>
+                                <Profile profilePage={state.profilePage}
                             />}/>
                             <Route path={'/dialogs'} render={() =>
                                 <Dialogs state={state.dialogsPage}
                                 />}/>
-                            <Route path={'/profile'} render={() => <Profile
-                                profilePage={state.profilePage}
+                            <Route path={'/profile'} render={() =>
+                                <Profile profilePage={state.profilePage}
                             />}/>
-                            <Route path={'/users'} render={() => <Users
-                                userPage={state.usersPage}
+                            <Route path={'/users'} render={() =>
+                                <Users userPage={state.usersPage}
                             />}/>
                             {/*<Route path={'/news'} component={News}/>*/}
                             {/*<Route path={'/music'} component={Music}/>*/}

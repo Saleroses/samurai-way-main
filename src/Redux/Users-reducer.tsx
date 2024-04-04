@@ -82,13 +82,8 @@ export const usersReducer = (state = initialState, action: ActionType) => {
             )
 
         case "GET-USERS":
-          const newData =  UserApi.getUsers()
-                .then((res)=> res.data.items)
             return (
-                {
-                    ...state,
-                    items: newData
-                }
+                {}
             )
 
         default:

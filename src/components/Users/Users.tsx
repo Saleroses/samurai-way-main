@@ -14,16 +14,19 @@ export const Users = (props: UsersType) => {
     const dispatch = useDispatch()
     const usersState = useSelector<AppRootStateType, UsersPageType>(state => state.usersPage)
     const defaultAva = 'https://tulacity.gosuslugi.ru/netcat_files/285/2177/avatar_600x600_0.png'
+    const [users, setUsers] = useState(usersState)
 
-   useEffect(() => {
-       UserApi.getUsers().then(data => {
-           usersState.items = data.data.items
-    })})
+    if (usersState.items.length === 0) {
+        UserApi.getUsers()
+            .then((res) => {
+            setUsers(res.data)
+        })
+    }
 
 
     return (
         <div className={s.wrapper}>
-            {usersState.items.map((u) => <div key={u.id}>
+            {users.items.map((u) => <div key={u.id}>
                 <div className={s.user}>
                     <div className={s.userPhoto}>
                         <div>{<img src={u.photos.small ? u.photos.small : defaultAva} className={s.ava} alt=""/>}
@@ -51,5 +54,4 @@ export const Users = (props: UsersType) => {
             </div>)}
         </div>
     );
-};
-
+}
