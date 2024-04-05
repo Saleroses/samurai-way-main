@@ -4,6 +4,7 @@ import {AppRootStateType, store} from "../../Redux/Redux-store";
 import {FollowAC, GetUsersAC, initialState, UnFollowAC, UsersPageType} from "../../Redux/Users-reducer";
 import s from './Users.module.css'
 import {UserApi} from "../../api/user-api";
+import {setProjectAnnotations} from "@storybook/react";
 
 
 type UsersType = {
@@ -22,10 +23,22 @@ export const Users = (props: UsersType) => {
             setUsers(res.data)
         })
     }
-
+    let pageSize = 300
+    let pagesCount = Math.ceil(users.totalCount/pageSize)
+    let page = []
+    for (let i = 1; i <= pagesCount; i++) {
+        page.push(i)
+    }
+    let currentPage = 1
 
     return (
         <div className={s.wrapper}>
+            <div>
+                {page.map((p) =>
+                <span className={currentPage === p ? s.selectedPage: ''}>{p+" "}</span>
+                )}
+            </div>
+
             {users.items.map((u) => <div key={u.id}>
                 <div className={s.user}>
                     <div className={s.userPhoto}>

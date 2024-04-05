@@ -107,3 +107,7 @@
     margin-right: 10px;
     margin-left: auto;
 }
+
+.selectedPage {
+    font-weight: bold;
+}

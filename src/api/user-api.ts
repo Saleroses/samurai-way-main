@@ -1,9 +1,10 @@
 import axios from "axios";
 import {UserDataType} from "../Redux/Users-reducer";
+import {number} from "prop-types";
 
 
 const instance = axios.create({
-    baseURL: 'https://social-network.samuraijs.com/api/1.0',
+        baseURL: 'https://social-network.samuraijs.com/api/1.0',
     }
 )
 
