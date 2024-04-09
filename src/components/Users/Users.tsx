@@ -37,16 +37,6 @@ export const Users = (props: UsersType) => {
 
     return (
         <div className={s.wrapper}>
-            <div>
-                {pages.map((p) =>
-                <span key={p}
-                      onClick={()=> {dispatch(setCurrentPage(p))}}
-                      className={currentPage === p ? s.selectedPage: ''}>{p+" "}
-
-                </span>
-                )}
-
-            </div>
 
             {users.items.map((u) => <div key={u.id}>
                 <div className={s.user}>
@@ -74,6 +64,16 @@ export const Users = (props: UsersType) => {
                     </div>
                 </div>
             </div>)}
+            <div>
+                {pages.map((p) =>
+                        <span key={p}
+                              onClick={()=> {dispatch(setCurrentPage(p))}}
+                              className={currentPage === p ? s.selectedPage: ''}>{p+" "}
+
+                </span>
+                )}
+
+            </div>
         </div>
     );
 }
