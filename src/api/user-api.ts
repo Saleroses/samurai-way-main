@@ -12,6 +12,7 @@ export type UserApiType = {
     items: UserDataType[]
     totalCount: number,
     error: string | null
+    currentPage: number
 }
 
 export type UserType = {
@@ -26,7 +27,7 @@ export type UserType = {
 }
 
 export const UserApi = {
-    getUsers() {
-        return instance.get<UserApiType>(`/users`)
+    getUsers(count: number, page: number) {
+        return instance.get<UserApiType>(`/users/?count=${count}&page=${page}` )
     }
 }

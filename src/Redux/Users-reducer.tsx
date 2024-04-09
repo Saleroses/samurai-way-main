@@ -19,14 +19,16 @@ export type UsersPageType = {
     items: UserDataType[]
     totalCount: number,
     error: string | null
+    currentPage: number
 }
 
 export type FollowAT = ReturnType<typeof FollowAC>
 export type UnFollowAT = ReturnType<typeof UnFollowAC>
 export type SetUsersAT = ReturnType<typeof SetUsersAC>
 export type GetUsersAT = ReturnType<typeof GetUsersAC>
+export type SetCurrentPageAT = ReturnType<typeof setCurrentPageAC>
 
-export type ActionType = FollowAT | UnFollowAT | SetUsersAT | GetUsersAT
+export type ActionType = FollowAT | UnFollowAT | SetUsersAT | GetUsersAT | SetCurrentPageAT
 
 
 export let initialState: UsersPageType = {
@@ -44,7 +46,8 @@ export let initialState: UsersPageType = {
                 // }
             ],
     totalCount: 0,
-    error: null
+    error: null,
+    currentPage: 1
 }
 
 export const usersReducer = (state = initialState, action: ActionType) => {
@@ -81,6 +84,11 @@ export const usersReducer = (state = initialState, action: ActionType) => {
                 {...state, users: [...state.items, ...action.users]}
             )
 
+        case "SET-CURRENT-PAGE":
+            return (
+                {...state, currentPage: action.currentPage}
+            )
+
         case "GET-USERS":
             return (
                 {}
@@ -106,4 +114,8 @@ export const SetUsersAC = (users: Array<UserDataType>) => {
 
 export const GetUsersAC = () => {
     return {type: 'GET-USERS'} as const
+}
+
+export const setCurrentPageAC = (currentPage: number) => {
+    return {type: 'SET-CURRENT-PAGE', currentPage} as const
 }

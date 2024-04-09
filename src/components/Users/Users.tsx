@@ -16,27 +16,36 @@ export const Users = (props: UsersType) => {
     const usersState = useSelector<AppRootStateType, UsersPageType>(state => state.usersPage)
     const defaultAva = 'https://tulacity.gosuslugi.ru/netcat_files/285/2177/avatar_600x600_0.png'
     const [users, setUsers] = useState(usersState)
+    const [currentPage, setCurrentPage] = useState(1)
 
-    if (usersState.items.length === 0) {
-        UserApi.getUsers()
-            .then((res) => {
-            setUsers(res.data)
-        })
-    }
-    let pageSize = 300
+    let pageSize = 30
     let pagesCount = Math.ceil(users.totalCount/pageSize)
-    let page = []
+    let pages = []
     for (let i = 1; i <= pagesCount; i++) {
-        page.push(i)
+        pages.push(i)
     }
-    let currentPage = 1
+
+    useEffect(()=> {
+        if (usersState.items.length === 0) {
+            UserApi.getUsers(pageSize, currentPage)
+                .then((res) => {
+                    setUsers(res.data)
+                })
+        }
+    }, [currentPage])
+
 
     return (
         <div className={s.wrapper}>
             <div>
-                {page.map((p) =>
-                <span className={currentPage === p ? s.selectedPage: ''}>{p+" "}</span>
+                {pages.map((p) =>
+                <span key={p}
+                      onClick={()=> {dispatch(setCurrentPage(p))}}
+                      className={currentPage === p ? s.selectedPage: ''}>{p+" "}
+
+                </span>
                 )}
+
             </div>
 
             {users.items.map((u) => <div key={u.id}>
